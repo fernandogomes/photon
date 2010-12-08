@@ -1,0 +1,4 @@
+* Tasks [0%] [0/0]
+** TODO Choice of the picture for the Albim Cover (currently the first picture)
+** TODO User comments for picture
+** TODO Various fixes

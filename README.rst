@@ -18,8 +18,7 @@ Currently (implemented|supported):
 1: Done via 'Create' and 'Edit' album pages
 
 Not currently (implemented|supported):
-  - Choice of a picture for the Album Cover (currently the first picture)
-  - User comments
+  - See TODO.org file
 
 Development
 ===========
