@@ -16,6 +16,7 @@ gem 'exifr'
 gem 'carrierwave', :git => 'git://github.com/jnicklas/carrierwave.git', :branch => 'master'
 gem 'quick_magick'
 gem 'resque'
+gem "jquery-rails"
 
 # Only for rails console
 gem "wirble"
