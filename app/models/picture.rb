@@ -53,12 +53,18 @@ class Picture < ActiveRecord::Base
       self.destroy
     end
   end
-  
+
   def create_other_sizes
-    # Run this -can be long- task in background
-    Delayed::Job.enqueue ProcessResizesJob.new(self.id), 0, Time.at(Time.now)
+    [
+      ["large", "1024x"],
+      ["normal", "650x"],
+      ["medium", "500x"],
+      ["small", "240x"],
+      ["thumb", "100x66"]].each do |size|
+      Resque.enqueue(ProcessResizesJob, size, self.id)
+    end
   end
-  
+
   private
   def calc_gps(lalon)
     deg = lalon[0]
@@ -68,5 +74,5 @@ class Picture < ActiveRecord::Base
     decimals = (deg.to_f + dec_min.to_f/60)
     return decimals
   end
-  
+
 end
