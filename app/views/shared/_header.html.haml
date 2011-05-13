@@ -12,13 +12,13 @@
     - if current_user
       %li
         Connected as
-        = current_user.login
+        = current_user.name
         - if current_user.role.title == "admin"
           %a{:title => "admin"} (A)
           - if action_name != "show"
             %li= link_to t(:header_tab_album_new), new_album_path
-      %li= link_to t(:header_tab_account), edit_user_path(current_user)
-      %li= link_to t(:header_tab_logout), logout_path
+      %li= link_to t(:header_tab_account), edit_user_registration_path
+      %li= link_to t(:header_tab_logout), destroy_user_session_path
     - else
-      %li= link_to t(:header_tab_login), login_path
-      %li= link_to t(:header_tab_register), new_user_path
+      %li= link_to t(:header_tab_login), new_user_session_path
+      %li= link_to t(:header_tab_register), new_user_registration_path

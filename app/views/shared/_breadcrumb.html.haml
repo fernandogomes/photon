@@ -1,14 +1,12 @@
-#breadcrumb
-  - if current_user
-    - if current_user.role.title == "admin"
-      - if flash[:warning] or flash[:notice]
-        - if flash[:warning]
-          .flashWarning
-        - else
-          .flashNotice
-        = flash[:warning] || flash[:notice]
-      - if Picture.to_process.count > 0
-        Pictures to process:
-        = Picture.to_process.count
-      - else
-        No pictures to process.
+- if flash[:warning] or flash[:notice] or flash[:error] or (Picture.to_process.count > 0)
+  #breadcrumb
+    - if flash[:warning]
+      .flashWarning
+    - else
+      .flashNotice
+    = flash[:warning] || flash[:notice]
+    - if current_user
+      - if current_user.role.title == "admin"
+        - if Picture.to_process.count > 0
+          Pictures to process:
+          = Picture.to_process.count
