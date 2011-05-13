@@ -1,15 +1,21 @@
 class User < ActiveRecord::Base
-  acts_as_authentic
-  
+  # Include default devise modules. Others available are:
+  # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :trackable, :validatable
+
+  # Setup accessible (or protected) attributes for your model
+  attr_accessible :email, :password, :password_confirmation, :remember_me
+
   has_many :albums, :dependent => :delete_all
   has_one :role, :dependent => :delete
   has_many :pictures
   after_create :create_default_role
-  
+
   def role_symbols
     (roles || []).map {|r| r.title.to_sym}
   end
-  
+
   def create_default_role
     if role.nil?
       create_role(:title => "user")

@@ -1,4 +1,6 @@
 Photon::Application.routes.draw do
+  devise_for :users
+
   resources :users, :user_session
   resources :albums do
     resources :pictures
