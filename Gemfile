@@ -7,7 +7,7 @@ gem 'rails', '3.0.7'
 
 gem 'sqlite3-ruby', :require => 'sqlite3'
 gem 'haml'
-gem 'authlogic',    :git => 'git://github.com/odorcicd/authlogic.git',    :branch => 'rails3'
+gem "devise", :git => 'git://github.com/plataformatec/devise.git'
 gem 'nifty-generators'
 gem 'sanitize'
 gem 'chronic'
