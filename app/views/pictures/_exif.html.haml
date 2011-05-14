@@ -14,25 +14,60 @@
     = @picture.exif.gps_latitude
     %br
   = t(:camera_model, :scope => [:exif])
-  = @picture.exif.camera_model
+  - if current_user && current_user.admin?
+    = on_the_spot_edit @picture.exif, :camera_model, :tooltip => "Change camera model."
+    %small.edit_exif
+      edit
+  - else
+    = @picture.exif.camera_model
   %br
   = t(:camera_brand, :scope => [:exif])
-  = @picture.exif.camera_brand
+  - if current_user && current_user.admin?
+    = on_the_spot_edit @picture.exif, :camera_brand, :tooltip => "Change camera brand."
+    %small.edit_exif
+      edit
+  - else
+    = @picture.exif.camera_brand
   %br
   = t(:exposure_time, :scope => [:exif])
-  = @picture.exif.exposure_time
+  - if current_user && current_user.admin?
+    = on_the_spot_edit @picture.exif, :exposure_time, :tooltip => "Change exposure time."
+    %small.edit_exif
+      edit
+  - else
+    = @picture.exif.exposure_time
   %br
   = t(:f_number, :scope => [:exif])
-  = @picture.exif.f_number
+  - if current_user && current_user.admin?
+    = on_the_spot_edit @picture.exif, :f_number, :tooltip => "Change f-number."
+    %small.edit_exif
+      edit
+  - else
+    = @picture.exif.f_number
   %br
   = t(:iso, :scope => [:exif])
-  = @picture.exif.iso_speed_rating
+  - if current_user && current_user.admin?
+    = on_the_spot_edit @picture.exif, :iso_speed_rating, :tooltip => "Change ISO."
+    %small.edit_exif
+      edit
+  - else
+    = @picture.exif.iso_speed_rating
   %br
   = t(:focale_length, :scope => [:exif])
-  = @picture.exif.focale_length
+  - if current_user && current_user.admin?
+    = on_the_spot_edit @picture.exif, :focale_length, :tooltip => "Change focale length."
+    %small.edit_exif
+      edit
+  - else
+    = @picture.exif.focale_length
   %br
   = t(:picture_date, :scope => [:exif])
-  = @picture.exif.shot_date_time
+  - if current_user && current_user.admin?
+    = on_the_spot_edit @picture.exif, :shot_date_time, :tooltip => "Change picture date."
+    %small.edit_exif
+      edit
+  - else
+    = @picture.exif.shot_date_time
   %br
   = t(:flash_mode, :scope => [:exif])
   = t "mode#{@picture.exif.flash || 'nil'}".to_sym, :scope => [:exif, :flash]

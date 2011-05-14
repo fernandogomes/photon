@@ -7,7 +7,10 @@
 .grid_10
   .grid_10.alpha.omega
     %span.pictureName
-      = on_the_spot_edit @picture, :name, :tooltip => "No title defined, click here to edit."
+      - if current_user && current_user.admin?
+        = on_the_spot_edit @picture, :name, :tooltip => "No title defined, click here to edit."
+      - else
+        = @picture.name
   .clear
 
   .grid_10.alpha.omega

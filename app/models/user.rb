@@ -23,4 +23,8 @@ class User < ActiveRecord::Base
       create_role(:title => "user")
     end
   end
+
+  def admin?
+    return self.role.title == "admin"
+  end
 end

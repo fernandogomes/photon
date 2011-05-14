@@ -125,3 +125,7 @@ li {
 .pictureName {
     font-size: 18px;
 }
+
+small.edit_exif {
+    font-size: 10px;
+}
