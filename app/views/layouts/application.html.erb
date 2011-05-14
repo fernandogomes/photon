@@ -5,8 +5,7 @@
     http-equiv="Content-Type" />
     <%= javascript_include_tag :defaults %>
     <%= javascript_include_tag "http://openlayers.org/api/OpenLayers.js" %>
-    <%= javascript_include_tag "map" %>
-    <%= javascript_include_tag :on_the_spot %>
+    <%= javascript_include_tag "map", :on_the_spot, "jquery.rotate" %>
     <%= stylesheet_link_tag 'reset', 'text', '960', 'application' %>
     <%= csrf_meta_tag %>
     <%= yield :head %>

@@ -5,16 +5,18 @@
     = t(:application_name)
 
 .grid_10
-  .grid_10.alpha.omega
+  .grid_9.alpha
     %span.pictureName
       - if current_user && current_user.admin?
         = on_the_spot_edit @picture, :name, :tooltip => "No title defined, click here to edit."
       - else
         = @picture.name
+  .grid_1.omega
+    = image_tag "layer-rotate.png", :id => "rotate"
   .clear
 
   .grid_10.alpha.omega
-    = image_tag get_picture_url(@picture.photo, :normal)
+    = image_tag get_picture_url(@picture.photo, :normal), :id => "img_big"
   .clear
 
   .grid_10.alpha.omega
@@ -35,3 +37,20 @@
     - if !@picture.exif.no_exif
       = render :partial => "exif"
 .clear
+
+:javascript
+  //borrowed from jQuery easing plugin
+  //http://gsgd.co.uk/sandbox/jquery.easing.php
+  $.easing.elasout = function(x, t, b, c, d) {
+    var s=1.70158;var p=0;var a=c;
+    if (t==0) return b;  if ((t/=d)==1) return b+c;  if (!p) p=d*.3;
+    if (a < Math.abs(c)) { a=c; var s=p/4; }
+    else var s = p/(2*Math.PI) * Math.asin (c/a);
+    return a*Math.pow(2,-10*t) * Math.sin( (t*d-s)*(2*Math.PI)/p ) + c + b;
+  };
+  $(document).ready(function() {
+    // rotation!
+    $('#rotate').click(function() {
+      $('#img_big').rotateRight()
+    });
+  });
