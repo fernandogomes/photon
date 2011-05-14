@@ -18,7 +18,10 @@
   .clear
 
   .grid_10.alpha.omega
-    <!-- picture comment -->
+    - if current_user && current_user.admin?
+      = on_the_spot_edit @picture, :description, :tooltip => "No description available, click here to edit.", :type => :textarea
+    - else
+      = @picture.description
   .clear
 
 .grid_5.prefix_1

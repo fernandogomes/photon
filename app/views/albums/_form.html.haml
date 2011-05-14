@@ -1,5 +1,7 @@
 = form_for @album, :html => {:multipart => true} do |f|
   .grid_5
+    %h3
+      Album:
     %p
       Nom :
       = f.text_field :name, :placeholder => "Album name"
@@ -22,12 +24,15 @@
 
   #newPaperclipFiles
     .grid_12
-      Add new files:
+      %h3
+        Add new files:
     .clear
     = f.fields_for :pictures do |picture|
       .grid_4.suffix_1
         - if picture.object.new_record?
           = picture.text_field :name, :placeholder => "Picture name"
+          %br
+          = picture.text_area :description, :placeholder => "Picture description", :rows => 4, :cols => 28
           %br
           = picture.file_field :photo
           %br
@@ -40,7 +45,8 @@
   .grid_12
     %p= f.submit t(:button_validate)
     %br
-    Edit existing files
+    %h3
+      Edit existing files
   .clear
 
   - count_line = 0
@@ -50,6 +56,8 @@
       - unless picture.object.new_record?
         .grid_4.suffix_1.thumbnail
           = picture.text_field :name, :placeholder => "Picture name"
+          %br
+          = picture.text_area :description, :placeholder => "Picture description", :rows => 4, :cols => 28
           %br
           = link_to( image_tag(get_picture_url(picture.object.photo, :thumb)),  get_picture_url(picture.object.photo), :target => :_blank)
           %br
