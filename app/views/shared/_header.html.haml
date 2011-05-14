@@ -7,7 +7,7 @@
     .links
       %ul
         %li= link_to t(:header_tab_home), root_path
-        - if controller_name == "pictures"
+        - if ((controller_name == "albums") && (!["create", "new", "index"].include? action_name)) || (controller_name == "pictures")
           %li= link_to t(:header_tab_return_album), @album
         - if !["index", "new", "create", "edit"].include? action_name
           - if !["devise/registrations"].include? controller_name
