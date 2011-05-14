@@ -93,7 +93,7 @@ li {
 }
 
 #content #navigation .thumb_for_nav img {
-    border: 3px solid #CCCCCC;
+    /*border: 3px solid #CCCCCC;*/
     margin-left: auto;
     margin-right: auto;
 }
