@@ -1,29 +1,66 @@
 = form_for @album, :html => {:multipart => true} do |f|
-  = render "shared/error_messages", :target => @album
-  %p
-    Nom : 
-    = f.text_field :name
-  %p
-    Description :
-  %p
-    = f.text_area :description, :rows => 6, :cols => 60
-  %br
+  .grid_5
+    %p
+      Nom :
+      = f.text_field :name, :placeholder => "Album name"
+    %p
+      Description :
+    %p
+      = f.text_area :description, :rows => 6, :cols => 60, :placeholder => "Album description"
+
+  .grid_12
+    = render "shared/error_messages", :target => @album
+  .clear
+
+  .grid_12
+    %br
+    %p= f.submit t(:button_validate)
+    %br
+  .clear
+
+  - count_line = 0
+
   #newPaperclipFiles
+    .grid_12
+      Add new files:
+    .clear
     = f.fields_for :pictures do |picture|
-      - if picture.object.new_record?
-        = picture.text_field :name
-        = picture.file_field :photo
-        %br
-  %br
+      .grid_4.suffix_1
+        - if picture.object.new_record?
+          = picture.text_field :name, :placeholder => "Picture name"
+          %br
+          = picture.file_field :photo
+          %br
+          %br
+      - count_line+=1
+      - if count_line == 3
+        .clear
+        - count_line = 0
+
+  .grid_12
+    %p= f.submit t(:button_validate)
+    %br
+    Edit existing files
+  .clear
+
+  - count_line = 0
+
   #existingPaperclipFiiled
     = f.fields_for :pictures do |picture|
       - unless picture.object.new_record?
-        .thumbnail
-          = picture.text_field :name
+        .grid_4.suffix_1.thumbnail
+          = picture.text_field :name, :placeholder => "Picture name"
           %br
           = link_to( image_tag(get_picture_url(picture.object.photo, :thumb)),  get_picture_url(picture.object.photo), :target => :_blank)
+          %br
           = picture.check_box :_destroy
+          Delete
           %br
           %br
-  %br
-  %p= f.submit t(:button_validate)
+        - count_line+=1
+        - if count_line == 3
+          .clear
+          - count_line = 0
+  .grid_12
+    %p= f.submit t(:button_validate)
+  .clear

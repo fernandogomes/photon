@@ -30,7 +30,7 @@ class AlbumsController < ApplicationController
 
   def edit
     @album = Album.find(params[:id])
-    5.times { @album.pictures.build }
+    6.times { @album.pictures.build }
   end
 
   def update
