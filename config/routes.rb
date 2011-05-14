@@ -1,9 +1,15 @@
 Photon::Application.routes.draw do
   devise_for :users
 
-  #resources :users
   resources :albums do
-    resources :pictures
+    collection do
+      put :update_attribute_on_the_spot
+    end
+    resources :pictures do
+      collection do
+        put :update_attribute_on_the_spot
+      end
+    end
   end
 
   root :to => "albums#index"

@@ -7,7 +7,7 @@
 .grid_10
   .grid_10.alpha.omega
     %span.pictureName
-      = @picture.name.blank? ? @picture.photo.file.filename : @picture.name
+      = on_the_spot_edit @picture, :name, :tooltip => "No title defined, click here to edit."
   .clear
 
   .grid_10.alpha.omega

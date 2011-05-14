@@ -17,6 +17,7 @@ gem 'carrierwave', :git => 'git://github.com/jnicklas/carrierwave.git', :branch 
 gem 'quick_magick'
 gem 'resque'
 gem "jquery-rails"
+gem "on_the_spot"
 
 # Only for rails console
 gem "wirble"
