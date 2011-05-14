@@ -4,11 +4,14 @@
     \-
     = t(:title_application_index)
 
-- @albums.each do |album|
-  .albumsListThumb
-    %p
-      %a{:href => album_path(album)}
-        - if !album.pictures.empty?
-          = image_tag get_picture_url(album.pictures.first.photo, :thumb)
-        %br
-        %span= album.name
+- @albums.in_groups_of(8, false) do |group_albums|
+  - group_albums.each do |album|
+    .grid_2.albums_list_thumb
+      .album_entry
+        %p
+          %a{:href => album_path(album)}
+            - if !album.pictures.empty?
+              = image_tag get_picture_url(album.pictures.first.photo, :thumb)
+            %br
+            %span= album.name
+  .clear

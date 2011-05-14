@@ -1,24 +1,29 @@
-#title
-  = link_to "Photon", root_path
-#links.clearfix
-  %ul
-    %li= link_to t(:header_tab_home), root_path
-    - if controller_name == "pictures"
-      %li= link_to t(:header_tab_return_album), @album
-    - if !["index", "new", "create", "edit"].include? action_name
-      - if !["devise/registrations"].include? controller_name
-        - if (current_user.role.title == "admin" if current_user)
-          %li= link_to t(:header_tab_edit_album), edit_album_path(@album)
-    - if current_user
-      %li
-        Connected as
-        = current_user.name
-        - if current_user.role.title == "admin"
-          %a{:title => "admin"} (A)
+.container_16
+  .grid_16
+    .title= link_to "Photon", root_path
+  .clear
+
+  .grid_16
+    .links
+      %ul
+        %li= link_to t(:header_tab_home), root_path
+        - if controller_name == "pictures"
+          %li= link_to t(:header_tab_return_album), @album
+        - if !["index", "new", "create", "edit"].include? action_name
+          - if !["devise/registrations"].include? controller_name
+            - if (current_user.role.title == "admin" if current_user)
+              %li= link_to t(:header_tab_edit_album), edit_album_path(@album)
+        - if current_user
+          %li
+            Connected as
+            = current_user.name
+            - if current_user.role.title == "admin"
+              %a{:title => "admin"} (A)
           - if action_name != "show"
             %li= link_to t(:header_tab_album_new), new_album_path
-      %li= link_to t(:header_tab_account), edit_user_registration_path
-      %li= link_to t(:header_tab_logout), destroy_user_session_path
-    - else
-      %li= link_to t(:header_tab_login), new_user_session_path
-      %li= link_to t(:header_tab_register), new_user_registration_path
+        %li= link_to t(:header_tab_account), edit_user_registration_path
+        %li= link_to t(:header_tab_logout), destroy_user_session_path
+      - else
+        %li= link_to t(:header_tab_login), new_user_session_path
+        %li= link_to t(:header_tab_register), new_user_registration_path
+  .clear

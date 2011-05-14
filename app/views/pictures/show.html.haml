@@ -4,11 +4,21 @@
     \-
     = t(:application_name)
 
-#left
-  %span.pictureName= @picture.name
-  = image_tag get_picture_url(@picture.photo, :normal)
+.grid_10
+  .grid_10.alpha.omega
+    %span.pictureName
+      = @picture.name.blank? ? @picture.photo.file.filename : @picture.name
+  .clear
 
-#right
+  .grid_10.alpha.omega
+    = image_tag get_picture_url(@picture.photo, :normal)
+  .clear
+
+  .grid_10.alpha.omega
+    <!-- picture comment -->
+  .clear
+
+.grid_5.prefix_1
   - if !@picture.exif.no_exif
     = render :partial => "map"
   #navigation
@@ -18,3 +28,4 @@
   #exif
     - if !@picture.exif.no_exif
       = render :partial => "exif"
+.clear

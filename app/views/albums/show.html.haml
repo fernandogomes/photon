@@ -4,10 +4,12 @@
     \-
     = t(:application_name)
 
-- @pictures.each do |picture|
-  .picturesListThumb
-    %p
-      %a{:href => album_picture_path(@album, picture)}
-        = image_tag get_picture_url(picture.photo, :thumb)
-        %br
-        %span= picture.name
+- @pictures.in_groups_of(8, false) do |group_pictures|
+  - group_pictures.each do |picture|
+    .grid_2.pictures_list_thumb
+      .picture_entry
+        %p
+          %a{:href => album_picture_path(@album, picture)}
+            = image_tag get_picture_url(picture.photo, :thumb)
+            %br
+            %span= picture.name

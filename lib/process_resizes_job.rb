@@ -1,6 +1,6 @@
 class ProcessResizesJob
 
-  @queue = :photon_resize_imgs
+  @queue = :photon_process_imgs
 
   def self.perform(size, id)
     picture = Picture.find(id)

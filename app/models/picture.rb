@@ -13,9 +13,7 @@ class Picture < ActiveRecord::Base
   scope :to_process, lambda { { :conditions => ['to_process = ?', true] } }
 
   def delete_other_sizes
-    # Run it in background
-    puts self.photo.path
-    Delayed::Job.enqueue ProcessDeleteOtherSizesJob.new(self.photo.path), 0, Time.at(Time.now)
+    Resque.enqueue(ProcessDeleteOtherSizesJob, self.photo.path)
   end
 
   def process_exif
@@ -60,7 +58,7 @@ class Picture < ActiveRecord::Base
       ["normal", "650x"],
       ["medium", "500x"],
       ["small", "240x"],
-      ["thumb", "100x66"]].each do |size|
+      ["thumb", "90x66"]].each do |size|
       Resque.enqueue(ProcessResizesJob, size, self.id)
     end
   end

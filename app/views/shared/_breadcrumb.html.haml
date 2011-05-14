@@ -1,5 +1,5 @@
 - if flash[:warning] or flash[:notice] or flash[:error] or (Picture.to_process.count > 0)
-  #breadcrumb
+  .grid_16.breadcrumb
     - if flash[:warning]
       .flashWarning
     - else
@@ -10,3 +10,4 @@
         - if Picture.to_process.count > 0
           Pictures to process:
           = Picture.to_process.count
+  .clear
