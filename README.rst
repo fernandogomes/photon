@@ -22,7 +22,9 @@ Not currently (implemented|supported):
 
 Installing
 ==========
-:
+
+Follow these lines in order to get Photon running:: 
+
 	bundle install
 	bundle exec rake db:migrate
 	rails s
