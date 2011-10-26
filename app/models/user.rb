@@ -19,8 +19,10 @@ class User < ActiveRecord::Base
   end
 
   def create_default_role
-    if role.nil?
+    if role.nil? and Role.count != 0
       create_role(:title => "user")
+    elsif role.nil? and Role.count == 0
+      create_role(:title => "admin")
     end
   end
 
