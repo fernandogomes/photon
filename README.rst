@@ -20,6 +20,13 @@ Currently (implemented|supported):
 Not currently (implemented|supported):
   - See TODO.org file
 
+Installing
+==========
+
+''bundle install''
+''bundle exec rake db:migrate''
+''rails s''
+
 Development
 ===========
 
